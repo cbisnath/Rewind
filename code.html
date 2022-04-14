@@ -62,17 +62,106 @@
                 <div class="col col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            // Call Hello World
-                            function HelloWorld() {
-                                alert("Hello World");
+                            // Get the string from the page
+                            // Controller function
+                            function getValue(){
+                            
+                                // Adds "invisible" class to alert boxes to initially hide from user
+                                document.getElementById("alert").classList.add("invisible");
+                                document.getElementById("tooShortAlert").classList.add("invisible");
+                            
+                                let userString = document.getElementById("userString").value;
+                            
+                                // Check if string entered is too short in length
+                                if (userString.length > 1) {
+                                    
+                                    let revString = reverseString(userString);
+                            
+                                    displayString(revString);
+                            
+                                }
+                                else {
+                            
+                                    // Write short string alert message to the page
+                                    document.getElementById("tooShortMsg").innerHTML = `Please enter a string at least two characters long.`;
+                                    // Show short string alert box
+                                    document.getElementById("tooShortAlert").classList.remove("invisible");
+                                    
+                                }
+                                
+                            }
+                            
+                            
+                            // Reverse the string
+                            // Logic function
+                            function reverseString(userString) {
+                            
+                                let revString = [];
+                            
+                                // Reverse string using a for loop
+                                for(let index = userString.length - 1; index >= 0; index --) {
+                                    revString += userString[index];
+                                }
+                            
+                                return revString;
+                            
+                            }
+                            
+                            
+                            // Display our reversed string to the user
+                            // View function
+                            function displayString(revString) {
+                            
+                                // Write message to the page
+                                document.getElementById("msg").innerHTML = `Your string reversed is: ${revString}`;
+                                // Show the alert box
+                                document.getElementById("alert").classList.remove("invisible");
+                            
                             }
                         </code>
                     </pre>
                 </div>
                 <div class="col col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function which displays an alert with a message of "Hello World".</p>
+                    <p>The Code is structured in three functions.</p>
+                    <h5>getValue( )</h5>
+                    <p>Our first main function, getValue( ), is our controller function responsible for retrieving the string
+                       the user input on the webpage.
+                       <br>
+                       <br>
+                       First, this function adds the class of “invisible” the the HTML elements which are responsible for 
+                       showing the alert box to the user, both for a successfully string reversal and as a warning to inform 
+                       the user their string length is too short.
+                       <br>
+                       <br>
+                       Second, it retrieves the string the user entered and checks to see if its length exceeds one character. 
+                       If is does, then our second and third functions, located at lines 31 and 47, are called to display a reversed 
+                       string to the user.
+                       <br>
+                       If the string entered by the user is less than one character, an alert is displayed to the user, by removing 
+                       the “invisible” class on the HTML element which represents the warning alert box.
+                    </p>
+
+                    <h5>reverseString( )</h5>
+                    <p>Our second function, reverseString(userString), is our logic function and takes a single parameter which is 
+                       the string entered by the user.
+                       <br>
+                       <br>
+                       It loops over the length of the string entered, takes the index location of each character in the string, and 
+                       finally adds it to an empty array called revString
+                    </p>
+
+                    <h5>displayString( )</h5>
+                    <p>Our third function, displayString(revString), is our view function and is responsible for displaying the reversed 
+                       version of the string entered, back to the user.
+                       <br>
+                       <br>
+                       It also takes a single parameter, which is the reversed string result from our second function, and writes a message 
+                       to the page which shows the newly reversed string.
+                       <br>
+                       <br>
+                       Finally, it removes the “invisible” class from the HTML element which represents the successfully reversal alert box, 
+                       so that this is displayed to the user.
+                    </p>
                 </div>
             </div>
         </div>
